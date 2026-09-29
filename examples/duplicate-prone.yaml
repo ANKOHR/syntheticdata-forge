@@ -1,0 +1,8 @@
+seed: 7
+tables:
+  repeated:
+    rows: 5
+    columns:
+      marker:
+        type: categorical
+        values: [same]

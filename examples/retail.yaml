@@ -1,0 +1,67 @@
+seed: 1729
+provenance_columns: true
+tables:
+  accounts:
+    rows: 8
+    columns:
+      account_id:
+        type: integer
+        min: 1
+        max: 8
+        diversity: {min_distinct: 8}
+      age:
+        type: integer
+        min: 18
+        max: 21
+        diversity: {range_coverage: {bins: 4}}
+      segment:
+        type: categorical
+        values: {standard: 0.7, premium: 0.3}
+        reference:
+          distribution: {standard: 0.5, premium: 0.5}
+      next_year_age:
+        type: transform
+        base: age
+        scale: 1
+        offset: 1
+      account_label:
+        type: text
+        template: "{segment} account {account_id}"
+        slots:
+          segment: {column: segment}
+          account_id: {column: account_id}
+      opened_on:
+        type: date
+        start: "2020-01-01"
+        end: "2020-12-31"
+    constraints:
+      pairwise:
+        - [age, segment]
+  orders:
+    rows: 16
+    columns:
+      order_id:
+        type: integer
+        min: 1000
+        max: 1015
+        diversity: {min_distinct: 16}
+      account_id:
+        type: foreign_key
+        table: accounts
+        column: account_id
+      amount:
+        type: uniform
+        min: 5
+        max: 250
+        reference: {mean: 127.5}
+      amount_with_fee:
+        type: correlated
+        base: amount
+        scale: 1.05
+        offset: 1
+        round: 2
+      note:
+        type: text
+        template: "Order {order_id} placed"
+        slots:
+          order_id: {column: order_id}
