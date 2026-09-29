@@ -1,0 +1,4 @@
+Pytest test count: 29
+Local commit hash: 4678b7e2a3dad756a8c04dc272a6e591059f07fb
+
+SyntheticData Forge is a Python CLI that compiles YAML specifications before generation, creates seeded deterministic synthetic tables with numeric, categorical, template, date, transform, and foreign-key generators, enforces feasible diversity constraints, hashes and deduplicates rows, and writes provenance manifests with CSV, JSONL, Markdown, and HTML quality reports. The reports compare generated marginals to declared reference statistics and show constraint results, while clearly identifying all output as synthetic rule-generated fixture data rather than real-world data.
