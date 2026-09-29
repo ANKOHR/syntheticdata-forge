@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "syntheticdata-forge"
+version = "1.0.0"
+description = "Deterministic, provenance-first synthetic dataset generation from YAML specifications"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["PyYAML>=6.0"]
+
+[project.optional-dependencies]
+test = ["pytest>=8.0"]
+
+[project.scripts]
+sdforge = "sdforge.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["sdforge*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
